@@ -1,10 +1,12 @@
-public class Student extends Department{
+package Domain;
+
+public class Student {
 
     private String name;
     private int id;
     private int contact;
     private String email;
-    Student(String name, int id, String email, int contact) {
+    public Student(String name, int id, String email, int contact) {
         this.name = name;
         this.id = id;
         this.email = email;
@@ -25,7 +27,7 @@ public class Student extends Department{
     }
 
     public String toString() {
-        return "Name: ("+ name + ")Id: (" + id + ")Email: (" + email + ")Contact (" + contact+ ")";
+        return "Name:("+ name + ") Id:(" + id + ") Email:(" + email + ") Contact:(" + contact+ ")";
     }
 
 }

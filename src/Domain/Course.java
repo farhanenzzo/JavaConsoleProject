@@ -1,3 +1,5 @@
+package Domain;
+
 public class Course {
     String courseName;
     String courseCode;
