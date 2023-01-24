@@ -6,6 +6,7 @@ public class Student {
     private int id;
     private int contact;
     private String email;
+
     public Student(String name, int id, String email, int contact) {
         this.name = name;
         this.id = id;
@@ -16,12 +17,15 @@ public class Student {
     public String getName() {
         return name;
     }
+
     public int getId() {
         return id;
     }
+
     public String getEmail() {
         return email;
     }
+
     public int getContact() {
         return contact;
     }

@@ -17,9 +17,11 @@ public class Main {
         do{
             String a = "Insert - 1";
             String b = "Display - 2";
-            System.out.println("-------------------------------------------------------------");
-            System.out.format("%32s%16s\n", a, b);
-            System.out.println("--------------------------------------------------------------");
+            String c = "Search - 3";
+            String d = "Delete - 4";
+            System.out.println("----------------------------------------------------------------------------------");
+            System.out.format("%15s%16s%17s%18s\n", a, b, c, d);
+            System.out.println("----------------------------------------------------------------------------------");
 
             System.out.print("Put your preference digit: ");
             userInput = sc.nextInt();
@@ -45,10 +47,42 @@ public class Main {
                 case 2:
                     Iterator<Student> iterator = students.iterator();
                     while (iterator.hasNext()) {
-                        Student data = iterator.next();
-                        System.out.println(data);
+                        System.out.println(iterator.next());
                     }
                 break;
+
+                case 3:
+                    System.out.print("Enter Student ID: ");
+                    int stuID = sc.nextInt();
+                    iterator = students.iterator();
+
+                    while (iterator.hasNext()) {
+                        Student stu = iterator.next();
+
+                        if(stu.getId() == stuID) {
+                            System.out.println(stu);
+                        }else {
+                            System.out.println("Student not found");
+                        }
+                    }
+                    break;
+
+                case 4:
+                    System.out.print("Enter Student ID to DELETE: ");
+                    stuID = sc.nextInt();
+                    iterator = students.iterator();
+
+                    while (iterator.hasNext()) {
+                        Student stu = iterator.next();
+
+                        if(stu.getId() == stuID) {
+                            iterator.remove();
+                            System.out.println("Student has been deleted");
+                        }else {
+                            System.out.println("Student not found");
+                        }
+                    }
+                    break;
             }
         }while (userInput != 0);
     }
