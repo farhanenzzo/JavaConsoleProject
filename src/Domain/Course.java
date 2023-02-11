@@ -2,24 +2,10 @@ package Domain;
 
 public class Course {
 
-    private String courseName;
     private String courseCode;
-    private int credit;
+    private String courseDetail;
 
-    Course(String courseName, String courseCode, int credit) {
-        this.courseName = courseName;
-        this.courseCode = courseCode;
-        this.credit = credit;
-
-    }
-
-    public String getCourseName() {
-        return courseName;
-    }
-
-    public void setCourseName(String courseName) {
-        this.courseName = courseName;
-    }
+    Course() {}
 
     public String getCourseCode() {
         return courseCode;
@@ -29,11 +15,11 @@ public class Course {
         this.courseCode = courseCode;
     }
 
-    public int getCredit() {
-        return credit;
+    public String getCourseDetail() {
+        return courseDetail;
     }
 
-    public void setCredit(int credit) {
-        this.credit = credit;
+    public void setCourseDetail(String courseDetail) {
+        this.courseDetail = courseDetail;
     }
 }

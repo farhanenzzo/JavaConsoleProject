@@ -1,37 +1,58 @@
 package Domain;
 
+import java.util.ArrayList;
+
 public class Student {
-
-    private String name;
     private int id;
-    private int contact;
-    private String email;
+    private String name;
+    private String semester;
+    private int totalCredit;
+    private ArrayList<String> myCourses;
+    private int completeCredit;
+    private int remainCredit;
 
-    public Student(String name, int id, String email, int contact) {
+    public Student() {
+    }
+
+    /**
+     * Student constructor to create new student object
+     * assuming every new student have total of = 136 credit(3 credit per course)
+     * initially taken credit is = 0
+     *
+     * @param id unique field
+     */
+
+    public Student(int id, String name, String semester) {
         this.name = name;
         this.id = id;
-        this.email = email;
-        this.contact = contact;
+        this.semester = semester;
+        totalCredit = 136;
+        completeCredit = 0;
+        remainCredit = totalCredit;
+        myCourses = new ArrayList<>();
     }
 
-    public String getName() {
-        return name;
+    public ArrayList<String> getMyCourses() {
+        return myCourses;
     }
 
-    public int getId() {
+    public int getMyId() {
         return id;
     }
 
-    public String getEmail() {
-        return email;
-    }
+    /**
+     * keep adding credits to the takenCredit field
+     */
 
-    public int getContact() {
-        return contact;
+    public void setMyCourse(String myCourse) {
+        this.myCourses.add(myCourse);
+        completeCredit += 3;
+        remainCredit = totalCredit - completeCredit;
     }
-
+    @Override
     public String toString() {
-        return "Name:("+ name + ") Id:(" + id + ") Email:(" + email + ") Contact:(" + contact+ ")";
+        return "Id:(" + id + ") Name:(" + name + ") Semester:(" + semester
+                + ") TotalCredit: (" + totalCredit + ")" + " Courses: ("+ getMyCourses() +")"
+                + " completeCredit: (" + completeCredit + ")" + "remainCredit: (" + remainCredit + ")";
     }
-
 }
