@@ -1,15 +1,18 @@
 package Domain;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Student {
     private int id;
     private String name;
     private String semester;
     private int totalCredit;
-    private ArrayList<String> myCourses;
+    private List<String> myCourses;
     private int completeCredit;
     private int remainCredit;
+
+    private int courseID;
 
     public Student() {
     }
@@ -32,7 +35,27 @@ public class Student {
         myCourses = new ArrayList<>();
     }
 
-    public ArrayList<String> getMyCourses() {
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setSemester(String semester) {
+        this.semester = semester;
+    }
+
+    public int getCourseId() {
+        return courseID;
+    }
+
+    public void setCourseID(int courseID) {
+        this.courseID = courseID;
+    }
+
+    public List<String> getMyCourses() {
         return myCourses;
     }
 
@@ -49,10 +72,14 @@ public class Student {
         completeCredit += 3;
         remainCredit = totalCredit - completeCredit;
     }
+
+    public void takeCourse(int courseID) {
+        this.courseID = courseID;
+    }
     @Override
     public String toString() {
         return "Id:(" + id + ") Name:(" + name + ") Semester:(" + semester
-                + ") TotalCredit: (" + totalCredit + ")" + " Courses: ("+ getMyCourses() +")"
+                + ") TotalCredit: (" + totalCredit + ")" + " Courses: ("+ courseID +")"
                 + " completeCredit: (" + completeCredit + ")" + "remainCredit: (" + remainCredit + ")";
     }
 }

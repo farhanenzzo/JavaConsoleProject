@@ -1,13 +1,23 @@
-import Domain.Student;
-import java.util.*;
+package Domain;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
-public class Main {
-    public static void main(String args[]) {
+public class Advising {
+    private List<Student> studentList;
+    private List<Course> courseList;
+
+    public Advising() {
+        studentList = new ArrayList<>();
+        courseList = new ArrayList<>();
+
+        courseList.add(new Course(110, "cse"));
+        courseList.add(new Course(111, "cse"));
+        courseList.add(new Course(220, "cse"));
 
         int userInput;
         Scanner sc  = new Scanner(System.in);
         Scanner scanner = new Scanner(System.in);
-        List<Student> students = new ArrayList<>();
 
         do{
             String a = "Insert INfo - 1";
@@ -37,20 +47,20 @@ public class Main {
                     String semester = sc.next();
 
                     Student student = new Student(id, name, semester);
-                    students.add(student);
-                break;
+                    studentList.add(student);
+                    break;
 
                 case 2:
-                    for(Student i : students) {
+                    for(Student i : studentList) {
                         System.out.println(i);
                     }
-                break;
+                    break;
 
                 case 3:
                     System.out.print("Enter Student ID to SEARCH: ");
                     int searchID = sc.nextInt();
 
-                    for(Student i : students) {
+                    for(Student i : studentList) {
                         if (i.getMyId() == searchID) {
                             System.out.println(i);
                         }else {
@@ -62,15 +72,14 @@ public class Main {
                 case 4:
                     System.out.print("Enter Student ID to DELETE: ");
                     int deleteID = sc.nextInt();
-                    students.removeIf(myData -> myData.getMyId() ==  deleteID);
-
+                    studentList.removeIf(myData -> myData.getMyId() ==  deleteID);
                     break;
 
                 case 5:
                     System.out.print("Enter Student ID to Update: ");
                     int updateID = sc.nextInt();
 
-                    for(Student s : students) {
+                    for(Student s : studentList) {
                         if(s.getMyId() == updateID) {
                             System.out.print("Enter Name: ");
                             String updateName = sc.next();
@@ -88,20 +97,35 @@ public class Main {
                     break;
 
                 case 6:
+
+                    System.out.println("Total available course: "+ courseList.size());
+                    for(Course i: courseList) {
+                        System.out.println(i.getCourseCode());
+                    }
+
                     System.out.print("Enter Student ID to ADD COURSE: ");
                     int studentId = sc.nextInt();
 
                     boolean exist = false;
 
-                    for(Student s : students) {
+                    for(Student s : studentList) {
                         if(s.getMyId() == studentId) {
                             exist = true;
                             System.out.print("Add Course: ");
-                            String addCourse = sc.next();
-                            s.setMyCourse(addCourse);
-                            System.out.println(s.getMyId() + " Course has been added");
+                            int addCourse = sc.nextInt();
+                            for(Course course : courseList) {
+                                if(course.getCourseCode() == addCourse) {
+                                    s.takeCourse(addCourse);
+                                    System.out.println(" *** Course has been added ***");
+                                    break;
+                                }else {
+                                    System.out.println(" *** Course in not available ***");
+                                }
+                            }
+                            break;
 
-                        }else{
+
+                        }else {
                             exist = false;
                         }
                     }
@@ -112,36 +136,31 @@ public class Main {
                     break;
 
                 case 7:
-//                    System.out.println("Total available course: "+ courseList.size());
-//                    for(Course i: courseList) {
-//                        System.out.println(i.getCourseCode());
-//                    }
+                    System.out.println("Total available course: "+ courseList.size());
+                    for(Course i: courseList) {
+                        System.out.println(i.getCourseCode());
+                    }
+
+                    System.out.print("Checkout courseCode: ");
+                    int courseCode = sc.nextInt();
+
+                    List<Student> cseStudent = getStudentByCourseId(courseCode);
+                    System.out.println("Students enrolled in CSE"+courseCode);
+                    for (Student s : cseStudent) {
+                        System.out.println("ID: " + s.getMyId() + ", Name: " + s.getName());
+                    }
                     break;
             }
         }while (userInput != 0);
     }
 
-    /**
-     *     private static void addStudent() {
-     *
-     *     }
-     *     private static void displayInfo() {
-     *
-     *     }
-     *
-     *     private static void searchId() {
-     *
-     *     }
-     *
-     *     private static void deleteStudent() {
-     *
-     *     }
-     *
-     *     private static void updateInfo() {
-     *
-     *     }
-     *     private static void addCourse() {
-     *
-     *     }
-     */
+    public List<Student> getStudentByCourseId(int courseId) {
+        List<Student> result = new ArrayList<>();
+        for (Student s : studentList) {
+            if (s.getCourseId() == courseId) {
+                result.add(s);
+            }
+        }
+        return result;
+    }
 }

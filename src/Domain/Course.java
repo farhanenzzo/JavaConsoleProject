@@ -2,16 +2,19 @@ package Domain;
 
 public class Course {
 
-    private String courseCode;
+    private int courseCode;
     private String courseDetail;
 
-    Course() {}
+    public Course(int courseCode, String courseDetail) {
+        this.courseCode = courseCode;
+        this.courseDetail = courseDetail;
+    }
 
-    public String getCourseCode() {
+    public int getCourseCode() {
         return courseCode;
     }
 
-    public void setCourseCode(String courseCode) {
+    public void setCourseCode(int courseCode) {
         this.courseCode = courseCode;
     }
 
